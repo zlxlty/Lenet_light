@@ -4,11 +4,11 @@ Lenet_Light
 ### A highly customizable and convenient CNN structure based on python and tensorflow  
 
 ***
-## Content
-* [Getting_Started](#getting started)  
+## Content  
+* [Getting Started](#getting started)  
   * Prerequisites
-  * Installing
-* [Running_the model](#running the model)  
+  * Installing  
+* [Running the model](#running the model)  
   * [Dataset](#dataset)
   * [Training](#training)
   * [Testing](#testing)
