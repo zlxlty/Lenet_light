@@ -5,10 +5,10 @@ Lenet_Light
 
 ***
 ## Content  
-* [Getting Started](#getting\ started)
+* [Getting Started](#getting_started)
   * Prerequisites
   * Installing  
-* [Running the model](#running\ the\ model)  
+* [Running the model](#running_the_model)  
   * [Dataset](#dataset)
   * [Training](#training)
   * [Testing](#testing)
