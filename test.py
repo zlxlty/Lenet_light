@@ -7,11 +7,11 @@ import cv2
 def recognize(jpg_path, pb_file_path):
 
     #TODO a   keys and values in labels can be customized according to your dataset
-    labels = {'[0]': 'blue', '[1]': 'green', '[2]': 'red'}
+    labels = {'[0]': 'cat', '[1]': 'dog'}
 
     #TODO b  adject the height, width and channel according to your picture (better be the same as ones in Lenet.py)
-    w=64
-    d=64
+    w=32
+    d=32
     c=3
 
     with tf.Graph().as_default():
