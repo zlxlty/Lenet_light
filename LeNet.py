@@ -12,7 +12,7 @@ from tensorflow.python.framework import graph_util
 import collections
 
 
-#将所有的图片重新设置尺寸
+#TODO 1 将所有的图片重新设置尺寸
 w = 32
 h = 32
 c = 3
@@ -20,6 +20,7 @@ c = 3
 #训练数据和测试数据保存地址
 train_path = "data/train/"
 test_path = "data/test/"
+#TODO 2
 pb_file_path = "Lenet.pb"
 
 #读取图片及其标签函数
@@ -61,6 +62,7 @@ y_ = tf.placeholder(tf.int32,[None],name='labels')
 
 def inference(input_tensor,train,regularizer):
 
+    #TODO 3
     #第一层：卷积层，过滤器的尺寸为5×5，深度为6,不使用全0补充，步长为1。
     #尺寸变化：32×32×1->28×28×6
     with tf.variable_scope('layer1-conv1'):
@@ -94,6 +96,7 @@ def inference(input_tensor,train,regularizer):
     nodes = pool_shape[1]*pool_shape[2]*pool_shape[3]
     reshaped = tf.reshape(pool2,[-1,nodes])
 
+    #TODO 4
     #第五层：全连接层，nodes=5×5×16=400，400->120的全连接
     #尺寸变化：比如一组训练样本为64，那么尺寸变化为64×400->64×120
     #训练时，引入dropout，dropout在训练时会随机将部分节点的输出改为0，dropout可以避免过拟合问题。
@@ -139,12 +142,14 @@ logit = inference(x,False,regularizer)
 
 y = tf.nn.softmax(logit, name='softmax')
 
+#TODO 5
 cross_entropy = tf.nn.sparse_softmax_cross_entropy_with_logits(logits=y,labels=y_)
 
 cross_entropy_mean = tf.reduce_mean(cross_entropy)
 
 loss = cross_entropy_mean + tf.add_n(tf.get_collection('losses'))
 
+#TODO 6
 train_op = tf.train.AdamOptimizer(0.001).minimize(loss)
 
 prediction_labels = tf.argmax(y, axis=1, name="output")
@@ -164,6 +169,7 @@ with tf.Session() as sess:
     #初始化所有变量(权值，偏置等)
     sess.run(tf.global_variables_initializer())
 
+    #TODO 7
     #将所有样本训练10次，每次训练中以64个为一组训练完所有样本。
     #train_num可以设置大一些。
     train_num = 50
@@ -186,7 +192,7 @@ with tf.Session() as sess:
         print("test loss:",test_loss/batch_num)
         print("test acc:{:.6}".format(test_acc/batch_num))
         print("\n")
-        
+
     constant_graph = graph_util.convert_variables_to_constants(sess, sess.graph_def, ["output"])
     with tf.gfile.FastGFile(pb_file_path, mode='wb') as f:
         f.write(constant_graph.SerializeToString())
