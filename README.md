@@ -5,7 +5,7 @@ Lenet_Light
 
 ***
 ## Content  
-* [Getting Started](#getting started)  
+* [Acknowledgments](#acknowledgments)
   * Prerequisites
   * Installing  
 * [Running the model](#running the model)  
