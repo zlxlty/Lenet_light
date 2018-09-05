@@ -43,11 +43,14 @@ $ python -c 'import cv2; print(cv2.__version__)'
 ## Running the model
 ### Dataset
 * Creating your own dataset is really convenient. In `data` directory there are two directories `train` and `test`.  
-  All you have to do is to categorize your picture set in different directories respectively and store them in `train`   
-  `Lenet.py` will use the `name` of these directories as `labels` and train them accordingly. It is all the same for `test` dataset.
-  `cat` and `dog` directories are just examples, you can delete them after cloning this repository
-* Pictures **must** be in `.jpg` format
-* If you are using dataset collected by yourself, the dataset are preferably renamed and resized already
+
+  All you have to do is to categorize your picture set in different directories respectively and store them in `train`.  
+
+  `Lenet.py` will use the `name` of these directories as `labels` and train them accordingly. It is all the same for `test` dataset.  
+
+  `cat` and `dog` directories are just examples, you can delete them after cloning this repository.
+* Pictures **must** be in `.jpg` format.
+* If you are using dataset collected by yourself, the dataset are preferably renamed and resized already.
 
 ### Training
 #### Original Training
@@ -85,13 +88,13 @@ I marked all the places that can be customized by `#TODO`
 ```
 Those are parameters for reshaping images. Depending on your computer configurations and your expected accuracy, you can change `w` and `h`. For colored pictures, `c` should be **3**(`RGB`)
 
-# `#TODO 2`:
+* `#TODO 2`:
 ```python
 pb_file_path = "Lenet.pb"
 ```
 You can change the path for storing `.pb` file and the name of the file.
 
-# **`#TODO 3`**:
+* **`#TODO 3`**:
 All the major changes such as the number of `convolutional layers`, the number of `kernels` in each layers and the `size` of each `kernel` can all be modified here.  
 The basic structure for one convolutional layers + one maxpooling layers is as followed:
 ```python
@@ -106,7 +109,7 @@ with tf.name_scope('layer2-pool1'):
 You can increase the number of layers by simply copy and paste the whole structure and change the name of those variables.  
 Other parameters can also be changed according to your need.
 
-# `TODO 4`:
+* `TODO 4`:
 `Full connected layers` can also be modified.  
 The basic structure for one full connected layer is as followed:
 ```python
@@ -120,7 +123,7 @@ with tf.variable_scope('layer5-fc1'):
             fc1 = tf.nn.dropout(fc1,0.5)
 ```
 
-# `TODO 5` and `TODO 6`:
+* `TODO 5` and `TODO 6`:
 ```python
 cross_entropy = tf.nn.sparse_softmax_cross_entropy_with_logits(logits=y,labels=y_)
 
@@ -133,7 +136,7 @@ train_op = tf.train.AdamOptimizer(0.001).minimize(loss)
 I am using `cross entropy mean` as my loss function and `AdamOptimizer` as my optimizer. You can change them into whatever you like.
 ****
 
-# `TODO 7`:
+* `TODO 7`:
 ```python
     train_num = 50
     batch_size = 12
